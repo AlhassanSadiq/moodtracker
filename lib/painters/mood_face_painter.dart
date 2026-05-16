@@ -24,7 +24,7 @@ class MoodFacePainter extends CustomPainter {
     _drawEyes(canvas, center, radius);
     _drawEyebrows(canvas, center, radius);
     _drawMouth(canvas, center, radius);
-    if (mood == MoodType.happy) {
+    if (mood == MoodType.happy || mood == MoodType.excited) {
       _drawCheeks(canvas, center, radius);
     }
   }
@@ -56,7 +56,8 @@ class MoodFacePainter extends CustomPainter {
 
     switch (mood) {
       case MoodType.happy:
-        // Happy eyes: curved arcs (closed, smiling)
+      case MoodType.excited:
+        // Happy/Excited eyes: curved arcs (closed, smiling)
         _drawHappyEye(
             canvas, Offset(center.dx - eyeOffsetX, eyeY), eyeRadius, featureColor);
         _drawHappyEye(
@@ -136,6 +137,13 @@ class MoodFacePainter extends CustomPainter {
         _drawArch(canvas, Offset(center.dx + browOffsetX, browY),
             browHalfWidth, radius * 0.07, browPaint, false);
         break;
+      case MoodType.excited:
+        // Even higher arched brows
+        _drawArch(canvas, Offset(center.dx - browOffsetX, browY - radius * 0.05),
+            browHalfWidth, radius * 0.1, browPaint, false);
+        _drawArch(canvas, Offset(center.dx + browOffsetX, browY - radius * 0.05),
+            browHalfWidth, radius * 0.1, browPaint, false);
+        break;
       case MoodType.neutral:
         // Flat, horizontal brows
         canvas.drawLine(
@@ -210,6 +218,16 @@ class MoodFacePainter extends CustomPainter {
             width: mouthHalfWidth * 2.2,
             height: radius * 0.55);
         canvas.drawArc(rect, 0, math.pi, false, mouthPaint);
+        break;
+      case MoodType.excited:
+        // Wide open mouth (D-shape)
+        final openMouthPaint = Paint()..color = featureColor;
+        final rect = Rect.fromCenter(
+            center: Offset(center.dx, mouthY),
+            width: mouthHalfWidth * 2.4,
+            height: radius * 0.5);
+        canvas.drawArc(rect, 0, math.pi, true, openMouthPaint);
+        // Add a small tongue? No, keep it simple with a circle segment
         break;
       case MoodType.neutral:
         // Straight horizontal line

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'providers/mood_provider.dart';
 import 'screens/home_screen.dart';
 
@@ -27,6 +28,7 @@ class MoodTrackerApp extends StatelessWidget {
         ),
         useMaterial3: true,
         scaffoldBackgroundColor: const Color(0xFFF7F8FC),
+        textTheme: GoogleFonts.outfitTextTheme(),
       ),
       home: const HomeScreen(),
     );

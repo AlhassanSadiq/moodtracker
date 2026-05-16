@@ -66,21 +66,26 @@ class _HomeScreenState extends State<HomeScreen>
             CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: isWide ? 48.0 : 20.0,
-                      vertical: 32,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildHeader(),
-                        const SizedBox(height: 36),
-                        _buildMoodSelectorCard(isWide),
-                        const SizedBox(height: 32),
-                        _buildTimelineSection(),
-                        const SizedBox(height: 40),
-                      ],
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 900),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: isWide ? 48.0 : 20.0,
+                          vertical: 32,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildHeader(),
+                            const SizedBox(height: 36),
+                            _buildMoodSelectorCard(isWide),
+                            const SizedBox(height: 32),
+                            _buildTimelineSection(),
+                            const SizedBox(height: 40),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -242,17 +247,7 @@ class _HomeScreenState extends State<HomeScreen>
           ),
           const SizedBox(height: 24),
           // Mood buttons
-          Wrap(
-            spacing: 14,
-            runSpacing: 14,
-            children: MoodType.values.map((mood) {
-              return MoodButton(
-                mood: mood,
-                isSelected: _selectedMood == mood,
-                onTap: () => setState(() => _selectedMood = mood),
-              );
-            }).toList(),
-          ),
+          _buildMoodGrid(context, isWide),
           const SizedBox(height: 24),
           // Log button
           AnimatedOpacity(
@@ -270,6 +265,45 @@ class _HomeScreenState extends State<HomeScreen>
         ],
       ),
     );
+  }
+
+  Widget _buildMoodGrid(BuildContext context, bool isWide) {
+    if (isWide) {
+      return Center(
+        child: Wrap(
+          spacing: 24,
+          runSpacing: 24,
+          alignment: WrapAlignment.center,
+          children: MoodType.values.map((mood) {
+            return SizedBox(
+              width: 110,
+              child: MoodButton(
+                mood: mood,
+                isSelected: _selectedMood == mood,
+                onTap: () => setState(() => _selectedMood = mood),
+              ),
+            );
+          }).toList(),
+        ),
+      );
+    } else {
+      // Mobile 2x2 grid
+      return GridView.count(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        crossAxisCount: 2,
+        mainAxisSpacing: 16,
+        crossAxisSpacing: 16,
+        childAspectRatio: 0.85, // Adjust to fit MoodButton height/width
+        children: MoodType.values.map((mood) {
+          return MoodButton(
+            mood: mood,
+            isSelected: _selectedMood == mood,
+            onTap: () => setState(() => _selectedMood = mood),
+          );
+        }).toList(),
+      );
+    }
   }
 
   Widget _buildTimelineSection() {
@@ -353,7 +387,7 @@ class _HomeScreenState extends State<HomeScreen>
           ),
           // Horizontal scrollable cards
           SizedBox(
-            height: 185,
+            height: 210,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               padding:

@@ -68,8 +68,8 @@ class _MoodButtonState extends State<MoodButton>
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             curve: Curves.easeOut,
-            width: 110,
-            height: 140,
+            width: double.infinity,
+            height: 155,
             decoration: BoxDecoration(
               color: isSelected ? mood.lightColor : Colors.white,
               borderRadius: BorderRadius.circular(20),
