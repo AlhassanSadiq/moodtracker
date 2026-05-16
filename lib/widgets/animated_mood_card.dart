@@ -89,7 +89,7 @@ class AnimatedMoodCardState extends State<AnimatedMoodCard>
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: widget.mood.color
-                        .withOpacity(0.35 * _glowOpacity.value),
+                        .withValues(alpha: 0.35 * _glowOpacity.value),
                   ),
                 ),
               CustomPaint(

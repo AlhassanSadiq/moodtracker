@@ -32,7 +32,7 @@ class MoodFacePainter extends CustomPainter {
   void _drawFaceBackground(Canvas canvas, Offset center, double radius) {
     // Outer glow
     final glowPaint = Paint()
-      ..color = faceColor.withOpacity(0.3)
+      ..color = faceColor.withValues(alpha: 0.3)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6);
     canvas.drawCircle(center, radius + 4, glowPaint);
 
@@ -42,7 +42,7 @@ class MoodFacePainter extends CustomPainter {
 
     // Face border
     final borderPaint = Paint()
-      ..color = faceColor.withOpacity(0.7)
+      ..color = faceColor.withValues(alpha: 0.7)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2.0;
     canvas.drawCircle(center, radius, borderPaint);
@@ -69,7 +69,7 @@ class MoodFacePainter extends CustomPainter {
         canvas.drawCircle(
             Offset(center.dx + eyeOffsetX, eyeY), eyeRadius, eyePaint);
         // Pupils
-        final pupilPaint = Paint()..color = faceColor.withOpacity(0.8);
+        final pupilPaint = Paint()..color = faceColor.withValues(alpha: 0.8);
         canvas.drawCircle(
             Offset(center.dx - eyeOffsetX, eyeY), eyeRadius * 0.45, pupilPaint);
         canvas.drawCircle(
@@ -112,7 +112,7 @@ class MoodFacePainter extends CustomPainter {
             height: eyeRadius * 1.6),
         fillPaint);
     // Pupil
-    final pupilPaint = Paint()..color = faceColor.withOpacity(0.75);
+    final pupilPaint = Paint()..color = faceColor.withValues(alpha: 0.75);
     canvas.drawCircle(
         Offset(center.dx, center.dy + eyeRadius * 0.1), eyeRadius * 0.5, pupilPaint);
   }
@@ -231,7 +231,7 @@ class MoodFacePainter extends CustomPainter {
 
   void _drawCheeks(Canvas canvas, Offset center, double radius) {
     final cheekPaint = Paint()
-      ..color = Colors.pink.withOpacity(0.28)
+      ..color = Colors.pink.withValues(alpha: 0.28)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 7);
 
     final cheekY = center.dy + radius * 0.07;

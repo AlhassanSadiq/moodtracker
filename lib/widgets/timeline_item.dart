@@ -84,16 +84,16 @@ class _TimelineItemState extends State<TimelineItem>
                 border: Border.all(
                   color: _highlightAnim.value > 0.01
                       ? mood.color
-                          .withOpacity(0.5 + 0.5 * _highlightAnim.value)
+                          .withValues(alpha: 0.5 + 0.5 * _highlightAnim.value)
                       : (_isHovered
-                          ? mood.color.withOpacity(0.45)
+                          ? mood.color.withValues(alpha: 0.45)
                           : Colors.grey.shade100),
                   width: 1.5 + _highlightAnim.value * 1.0,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: mood.color.withOpacity(
-                        0.08 + (_isHovered ? 0.12 : 0) +
+                    color: mood.color.withValues(
+                        alpha: 0.08 + (_isHovered ? 0.12 : 0) +
                             _highlightAnim.value * 0.22),
                     blurRadius: 12 + _highlightAnim.value * 8,
                     offset: const Offset(0, 4),

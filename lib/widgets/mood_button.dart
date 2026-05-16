@@ -77,15 +77,15 @@ class _MoodButtonState extends State<MoodButton>
                 color: isSelected
                     ? mood.color
                     : (_isHovered
-                        ? mood.color.withOpacity(0.4)
+                        ? mood.color.withValues(alpha: 0.4)
                         : Colors.grey.shade200),
                 width: isSelected ? 2.5 : 1.5,
               ),
               boxShadow: [
                 BoxShadow(
                   color: isSelected
-                      ? mood.color.withOpacity(0.30)
-                      : Colors.black.withOpacity(0.06),
+                      ? mood.color.withValues(alpha: 0.30)
+                      : Colors.black.withValues(alpha: 0.06),
                   blurRadius: isSelected ? 16 : 8,
                   offset: const Offset(0, 4),
                 ),

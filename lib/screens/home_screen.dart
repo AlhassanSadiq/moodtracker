@@ -105,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen>
                           borderRadius: BorderRadius.circular(30),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.green.withOpacity(0.3),
+                              color: Colors.green.withValues(alpha: 0.3),
                               blurRadius: 16,
                               offset: const Offset(0, 4),
                             ),
@@ -165,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen>
             borderRadius: BorderRadius.circular(14),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF6C63FF).withOpacity(0.35),
+                color: const Color(0xFF6C63FF).withValues(alpha: 0.35),
                 blurRadius: 12,
                 offset: const Offset(0, 4),
               ),
@@ -214,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen>
         borderRadius: BorderRadius.circular(28),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withValues(alpha: 0.06),
             blurRadius: 24,
             offset: const Offset(0, 6),
           ),
@@ -296,7 +296,7 @@ class _HomeScreenState extends State<HomeScreen>
                   padding:
                       const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF6C63FF).withOpacity(0.1),
+                    color: const Color(0xFF6C63FF).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
@@ -338,7 +338,7 @@ class _HomeScreenState extends State<HomeScreen>
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 20,
             offset: const Offset(0, 4),
           ),
@@ -381,7 +381,7 @@ class _HomeScreenState extends State<HomeScreen>
             style: BorderStyle.solid),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
@@ -468,7 +468,7 @@ class _LogButtonState extends State<_LogButton> {
                 ? [
                     BoxShadow(
                       color: (mood?.color ?? const Color(0xFF6C63FF))
-                          .withOpacity(_isHovered ? 0.45 : 0.28),
+                          .withValues(alpha: _isHovered ? 0.45 : 0.28),
                       blurRadius: _isHovered ? 20 : 12,
                       offset: const Offset(0, 4),
                     )
@@ -528,8 +528,8 @@ class _TimelineConnector extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      entries[i ~/ 2].mood.color.withOpacity(0.3),
-                      entries[i ~/ 2 + 1].mood.color.withOpacity(0.3),
+                      entries[i ~/ 2].mood.color.withValues(alpha: 0.3),
+                      entries[i ~/ 2 + 1].mood.color.withValues(alpha: 0.3),
                     ],
                   ),
                 ),
@@ -545,7 +545,7 @@ class _TimelineConnector extends StatelessWidget {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: mood.color.withOpacity(0.4),
+                    color: mood.color.withValues(alpha: 0.4),
                     blurRadius: 4,
                     spreadRadius: 1,
                   ),
@@ -566,17 +566,17 @@ class _BackgroundPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint1 = Paint()
-      ..color = const Color(0xFF6C63FF).withOpacity(0.04);
+      ..color = const Color(0xFF6C63FF).withValues(alpha: 0.04);
     canvas.drawCircle(Offset(size.width * 0.85, size.height * 0.12),
         size.width * 0.30, paint1);
 
     final paint2 = Paint()
-      ..color = const Color(0xFFFFB703).withOpacity(0.05);
+      ..color = const Color(0xFFFFB703).withValues(alpha: 0.05);
     canvas.drawCircle(Offset(size.width * 0.1, size.height * 0.65),
         size.width * 0.22, paint2);
 
     final paint3 = Paint()
-      ..color = const Color(0xFF7E57C2).withOpacity(0.04);
+      ..color = const Color(0xFF7E57C2).withValues(alpha: 0.04);
     canvas.drawCircle(Offset(size.width * 0.5, size.height * 0.90),
         size.width * 0.18, paint3);
   }
